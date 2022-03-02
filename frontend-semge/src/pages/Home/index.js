@@ -42,7 +42,7 @@ export const Home = () => {
   return (
     <Container>
       <ConteudoTitulo>
-        <Titulo>Listar</Titulo>
+        <Titulo>Lista de usuário</Titulo>
         <BotaoAcao>
           <Link to="/cadastrar">
             <ButtonSuccess>Cadastrar</ButtonSuccess>

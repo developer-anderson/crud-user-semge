@@ -22,7 +22,7 @@ class CreateUsuariosTable extends Migration
             $table->char('cpf', 20);
             $table->timestamp('dthr_criacao', $precision = 0)->default('CURRENT_TIMESTAMP');
             $table->timestamp('dthr_atualizacao', $precision = 0);
-            $table->integer('id_perfil');
+            $table->integer('id_perfil')->default(1);
             $table->foreign('id_perfil')->references('id')->on('perfils');
             $table->char('cep', 11);
             $table->date('data_nascimento', $precision = 0);
@@ -30,7 +30,7 @@ class CreateUsuariosTable extends Migration
             $table->char('pais', 11);
             $table->char('cidade', 11);
             $table->char('logradouro', 100);
-            $table->char('numero', 5);
+            $table->char('numero', 20);
             $table->char('complemento', 100);
             $table->timestamps();
            

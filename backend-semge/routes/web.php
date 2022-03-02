@@ -19,5 +19,5 @@ Route::get('/usuarios', 'App\Http\Controllers\UsuariosController@index');
 Route::get('/delete/{id}', 'App\Http\Controllers\UsuariosController@delete');
 Route::get('/visualizar/{id}', 'App\Http\Controllers\UsuariosController@show');
 Route::post('/update/{id}', 'App\Http\Controllers\UsuariosController@update');
-Route::put('/insert', 'App\Http\Controllers\UsuariosController@store');
+Route::post('/insert', 'App\Http\Controllers\UsuariosController@store');
 

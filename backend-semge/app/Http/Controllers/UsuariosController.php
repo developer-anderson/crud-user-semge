@@ -23,7 +23,7 @@ class UsuariosController extends Controller
     public function store(Request $request)
     {
         $dados = $request->all();
-        Usuarios::create();
+        Usuarios::create($dados);
         return [
             "erro" => false,
             "mensagem" => "Usuário cadastrado com  sucesso!"

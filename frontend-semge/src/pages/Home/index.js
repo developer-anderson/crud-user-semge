@@ -46,7 +46,7 @@ export const Home = () => {
         <Titulo>Lista de usuário</Titulo>
         <BotaoAcao>
           <Link to="/cadastrar">
-            <ButtonSuccess>Cadastrar</ButtonSuccess>
+            <ButtonSuccess>   <FaRegPlusSquare /> Cadastrar</ButtonSuccess>
           </Link>
         </BotaoAcao>
       </ConteudoTitulo>

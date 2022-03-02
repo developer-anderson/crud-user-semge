@@ -101,11 +101,13 @@ export const Table = styled.table`
         background-color: #054f77;
         color: #fff;
         padding: 10px;
+        font-size: 14px;
     }
     td{
         background-color: #f6f6f6;
         color: #3e3e3e;
         padding: 8px;
+        font-size: 14px;
         text-align: center;
     }
 `;

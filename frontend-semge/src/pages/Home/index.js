@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FaTrashAlt, FaRegPlusSquare, FaWrench, FaRegClipboard } from 'react-icons/fa';
 
 import { Container, ConteudoTitulo, BotaoAcao, ButtonSuccess, Table, Titulo, ButtonPrimary, ButtonWarning, ButtonDanger, AlertSuccess, AlertDanger } from './styles';
 
@@ -58,7 +59,9 @@ export const Home = () => {
           <tr>
             <th>Nome</th>
             <th>E-mail</th>
-            <th>Ações</th>
+            <th>#</th>
+            <th>#</th>
+            <th>#</th>
           </tr>
         </thead>
         <tbody>
@@ -68,12 +71,20 @@ export const Home = () => {
               <td>{Usuario.email}</td>
               <td>
                 <Link to={"/visualizar/" + Usuario.id}>
-                  <ButtonPrimary>Visualizar</ButtonPrimary>
+                  <FaRegClipboard />
                 </Link>{" "}
+              </td>
+              <td>
                 <Link to={"/editar/" + Usuario.id}>
-                  <ButtonWarning>Editar</ButtonWarning>
+                  <FaWrench />
                 </Link>{" "}
-                <ButtonDanger onClick={() => apagarUsuario(Usuario.id)}>Apagar</ButtonDanger>
+              </td>
+
+              <td>
+
+
+                <FaTrashAlt onClick={() => apagarUsuario(Usuario.id)} />
+
               </td>
             </tr>
           ))}

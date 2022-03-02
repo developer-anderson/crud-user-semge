@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 
-import { Container, ConteudoTitulo, BotaoAcao, ButtonInfo, Titulo, ConteudoProd } from './styles';
+import { Container, ConteudoTitulo, BotaoAcao,ButtonPrimary, ButtonInfo, Titulo, ConteudoProd } from './styles';
 
 export const Visualizar = (props) => {
 
@@ -23,10 +23,15 @@ export const Visualizar = (props) => {
     return (
         <Container>
             <ConteudoTitulo>
-                <Titulo>Visualizar</Titulo>
+                <Titulo>Informações do usuário: {data.nome}</Titulo>
                 <BotaoAcao>
                     <Link to="/">
-                        <ButtonInfo>Listar</ButtonInfo>
+                        <ButtonInfo>Visualizar todos usuários</ButtonInfo>
+                    </Link>
+                </BotaoAcao>
+                <BotaoAcao>
+                    <Link  to={"/editar/" + data.id}>
+                        <ButtonPrimary>Editar informações</ButtonPrimary>
                     </Link>
                 </BotaoAcao>
             </ConteudoTitulo>
@@ -34,6 +39,12 @@ export const Visualizar = (props) => {
             <ConteudoProd>E-mail: {data.email}</ConteudoProd>
             <ConteudoProd>Telefone: {data.telefone}</ConteudoProd>
             <ConteudoProd>CPF: {data.cpf}</ConteudoProd>
+            <ConteudoProd>Cep: {data.cep}</ConteudoProd>
+            <ConteudoProd>Estado: {data.estado}</ConteudoProd>
+            <ConteudoProd>Cidade: {data.cidade}</ConteudoProd>
+            <ConteudoProd>Logradouro: {data.logradouro}</ConteudoProd>
+            <ConteudoProd>Número: {data.numero}</ConteudoProd>
+            <ConteudoProd>Complemento: {data.complemento}</ConteudoProd>
         </Container>
     );
 }

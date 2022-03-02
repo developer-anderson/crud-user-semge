@@ -40,6 +40,10 @@ class UsuariosController extends Controller
     {
         $dados = $request->all();
         Usuarios::find($id)->update($dados);
+        return [
+            "erro" => false,
+            "mensagem" => "Usuário editado com  sucesso!"
+        ];
     }
 
     public function delete($id)

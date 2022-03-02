@@ -15,7 +15,19 @@ justify-content: space-between;
 export const BotaoAcao = styled.section`
 margin: 20px 0px;
 `;
-
+export const ButtonPrimary = styled.button`
+    background-color: #fff;
+    color: #0d6efd;
+    padding: 5px 8px;
+    border: 1px solid #0d6efd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    :hover{
+        background-color: #0d6efd;
+        color: #fff;
+    }
+`;
 export const ButtonInfo = styled.button`
 background-color: #fff;
 color: #0dcaf0;

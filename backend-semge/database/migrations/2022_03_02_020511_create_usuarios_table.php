@@ -25,13 +25,14 @@ class CreateUsuariosTable extends Migration
             $table->integer('id_perfil');
             $table->foreign('id_perfil')->references('id')->on('perfils');
             $table->char('cep', 11);
-            $table->date('data_nascimento');
+            $table->date('data_nascimento', $precision = 0);
             $table->char('estado', 11);
             $table->char('pais', 11);
             $table->char('cidade', 11);
             $table->char('logradouro', 100);
             $table->char('numero', 5);
             $table->char('complemento', 100);
+            $table->timestamps();
            
         });
     }

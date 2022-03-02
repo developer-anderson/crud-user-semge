@@ -20,6 +20,8 @@ export const Editar = (props) => {
     const [pais, setPais] = useState('');
     const [senha, setSenha] = useState('');
     const [id_perfil, setIdPerfil] = useState('');
+    const [dthr_atualizacao, setDataAtualizacao] = useState('');
+
     const options = [
         { value: 1, label: 'Administrador' },
         { value: 2, label: 'Supervisor' },
@@ -29,6 +31,7 @@ export const Editar = (props) => {
         type: '',
         mensagem: ''
     })
+    const horario = new Date();
 
     const editUsuario = async e => {
         e.preventDefault();
@@ -38,7 +41,7 @@ export const Editar = (props) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ nome, email, telefone, cep,cpf,estado,cidade,logradouro,data_nascimento,id_perfil, senha, pais, complemento })
+            body: JSON.stringify({ nome, email, telefone, cep,cpf,estado,cidade,logradouro,data_nascimento,id_perfil, senha, pais, complemento,dthr_atualizacao })
         }).then((response) => response.json())
             .then((responseJson) => {
                 console.log(responseJson);
@@ -80,7 +83,8 @@ export const Editar = (props) => {
                     setPais(responseJson.pais);
                     setNumero(responseJson.numero);
                     setComplemento(responseJson.complemento);
-                    
+                    setDataAtualizacao(horario.getFullYear() + '-' + horario.getMonth()+ '-' +horario.getDay()+ ' ' +horario.getHours()+':'+horario.getMinutes()+':'+horario.getSeconds()  );
+                   
                 });
         }
         getProduto();

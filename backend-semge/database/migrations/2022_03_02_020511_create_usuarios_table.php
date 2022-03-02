@@ -20,8 +20,8 @@ class CreateUsuariosTable extends Migration
             $table->char('telefone', 100);
             $table->char('senha', 100);
             $table->char('cpf', 20);
-            $table->dateTime('dthr_criacao', $precision = 0);
-            $table->dateTime('dthr_atualizacao', $precision = 0);
+            $table->timestamp('dthr_criacao', $precision = 0)->default('CURRENT_TIMESTAMP');
+            $table->timestamp('dthr_atualizacao', $precision = 0);
             $table->integer('id_perfil');
             $table->foreign('id_perfil')->references('id')->on('perfils');
             $table->char('cep', 11);

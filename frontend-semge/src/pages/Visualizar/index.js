@@ -10,15 +10,15 @@ export const Visualizar = (props) => {
     const [id] = useState(props.match.params.id);
 
     useEffect(() => {
-        const getProduto = async () => {
-            await fetch("http://localhost/celke/visualizar.php?id=" + id)
+        const getUsuario = async () => {
+            await fetch("http://127.0.0.1:8000/visualizar/" + id)
                 .then((response) => response.json())
                 .then((responseJson) => {
                     //console.log(responseJson);
-                    setData(responseJson.produto);
+                    setData(responseJson);
                 });
         }
-        getProduto();
+        getUsuario();
     }, [id]);
     return (
         <Container>
@@ -30,9 +30,10 @@ export const Visualizar = (props) => {
                     </Link>
                 </BotaoAcao>
             </ConteudoTitulo>
-            <ConteudoProd>ID: {data.id}</ConteudoProd>
-            <ConteudoProd>Título: {data.titulo}</ConteudoProd>
-            <ConteudoProd>Descrição: {data.descricao}</ConteudoProd>
+            <ConteudoProd>Nome: {data.nome}</ConteudoProd>
+            <ConteudoProd>E-mail: {data.email}</ConteudoProd>
+            <ConteudoProd>Telefone: {data.telefone}</ConteudoProd>
+            <ConteudoProd>CPF: {data.cpf}</ConteudoProd>
         </Container>
     );
 }

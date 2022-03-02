@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-import { Container, ConteudoForm, ConteudoTitulo, Titulo, BotaoAcao, ButtonInfo, AlertSuccess, AlertDanger, Form, Label, Input, ButtonSuccess } from './styles';
+import Select from 'react-select';
+import { Container, ConteudoForm, ConteudoTitulo, Titulo, BotaoAcao, ButtonInfo, AlertSuccess, AlertDanger, Form, Label,  Input, ButtonSuccess } from './styles';
 
 export const Cadastrar = () => {
 
@@ -16,8 +16,12 @@ export const Cadastrar = () => {
   })
 
   const valorInput = e => setProduto({ ...produto, [e.target.name]: e.target.value });
-
-  const cadProduto = async e => {
+  const options = [
+    { value: 1, label: 'Administrador' },
+    { value: 2, label: 'Supervisor' },
+    { value: 3, label: 'Operário' },
+  ];
+  const cadastrarUsuario = async e => {
     e.preventDefault();
     //console.log(produto.titulo);
 
@@ -45,16 +49,17 @@ export const Cadastrar = () => {
       }).catch(() => {
         setStatus({
           type: 'erro',
-          mensagem: 'Produto não cadastro com sucesso, tente mais tarde!'
+          mensagem: 'Erro ao cadastrar usuário!'
         });
       });
   }
 
   return (
+    
     <Container>
       <ConteudoForm>
         <ConteudoTitulo>
-          <Titulo>Cadastrar</Titulo>
+          <Titulo>Cadastrar novo usuário</Titulo>
           <BotaoAcao>
             <Link to="/">
               <ButtonInfo>Listar</ButtonInfo>
@@ -65,12 +70,24 @@ export const Cadastrar = () => {
         {status.type === 'erro' ? <AlertDanger>{status.mensagem}</AlertDanger> : ""}
         {status.type === 'success' ? <AlertSuccess>{status.mensagem}</AlertSuccess> : ""}
 
-        <Form onSubmit={cadProduto}>
-          <Label>Título: </Label>
-          <Input type="text" name="titulo" placeholder="Título do produto" onChange={valorInput} />
+        <Form onSubmit={cadastrarUsuario}>
+          <Label>Nome completo: </Label>
+          <Input type="text" name="nome" placeholder="nome do usuário" onChange={valorInput} />
 
-          <Label>Descrição: </Label>
-          <Input type="text" name="descricao" placeholder="Descrição do produto" onChange={valorInput} />
+          <Label>CPF: </Label>
+          <Input type="text" name="cpf" placeholder="CPF" onChange={valorInput} />
+
+          <Label>E-mail: </Label>
+          <Input type="email" name="email" placeholder="E-mail" onChange={valorInput} />
+
+          <Label>Senha: </Label>
+          <Input type="password" name="senha" placeholder="Sua senha de acesso" onChange={valorInput} />
+           
+          <Label>Data de nascimento: </Label>
+          <Input type="date" name="datanascimento" onChange={valorInput} />
+          
+          <Label>Perfil:</Label>
+          <Select options={options} />
 
           <ButtonSuccess type="submit">Cadastrar</ButtonSuccess>
 

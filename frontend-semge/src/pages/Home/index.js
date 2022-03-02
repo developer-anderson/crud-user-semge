@@ -12,42 +12,31 @@ export const Home = () => {
     mensagem: ''
   });
 
-  const getProdutos = async () => {
-    fetch("http://localhost/celke/index.php")
+  const getUsuarios = async () => {
+    fetch("http://127.0.0.1:8000/usuarios")
       .then((response) => response.json())
       .then((responseJson) => (
-        //console.log(responseJson),
-        setData(responseJson.records)
+        console.log(responseJson),
+        setData(responseJson.Usuarios)
       ));
   }
 
-  const apagarProduto = async (idProduto) => {
-    //console.log(idProduto);
-    await fetch("http://localhost/celke/apagar.php?id=" + idProduto)
+  const apagarUsuario = async (idUsuario) => {
+    //console.log(idUsuario);
+    await fetch("http://127.0.0.1:8000/delete/" + idUsuario)
       .then((response) => response.json())
       .then((responseJson) => {
-        if (responseJson.erro) {
-          setStatus({
-            type: 'erro',
-            mensagem: responseJson.mensagem
-          });
-        } else {
-          setStatus({
-            type: 'success',
-            mensagem: responseJson.mensagem
-          });
-          getProdutos();
-        }
-      }).catch(() => {
+        console.log(responseJson)
         setStatus({
-          type: 'erro',
-          mensagem: "Erro: Produto não apagado com sucesso, tente mais tarde"
+          type: 'success',
+          mensagem: responseJson.mensagem
         });
-      });
+        getUsuarios();
+      })
   };
 
   useEffect(() => {
-    getProdutos();
+    getUsuarios();
   }, [])
 
   return (
@@ -67,26 +56,24 @@ export const Home = () => {
       <Table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Título</th>
-            <th>Descrição</th>
+            <th>Nome</th>
+            <th>E-mail</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          {Object.values(data).map(produto => (
-            <tr key={produto.id}>
-              <td>{produto.id}</td>
-              <td>{produto.titulo}</td>
-              <td>{produto.descricao}</td>
+          {Object.values(data).map(Usuario => (
+            <tr key={Usuario.id}>
+              <td>{Usuario.nome}</td>
+              <td>{Usuario.email}</td>
               <td>
-                <Link to={"/visualizar/" + produto.id}>
+                <Link to={"/visualizar/" + Usuario.id}>
                   <ButtonPrimary>Visualizar</ButtonPrimary>
                 </Link>{" "}
-                <Link to={"/editar/" + produto.id}>
+                <Link to={"/editar/" + Usuario.id}>
                   <ButtonWarning>Editar</ButtonWarning>
                 </Link>{" "}
-                <ButtonDanger onClick={() => apagarProduto(produto.id)}>Apagar</ButtonDanger>
+                <ButtonDanger onClick={() => apagarUsuario(Usuario.id)}>Apagar</ButtonDanger>
               </td>
             </tr>
           ))}

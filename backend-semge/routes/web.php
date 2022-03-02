@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\UsuariosController;
+
+Route::get('/usuarios', 'App\Http\Controllers\UsuariosController@index');
+Route::get('/delete/{id}', 'App\Http\Controllers\UsuariosController@delete');
+

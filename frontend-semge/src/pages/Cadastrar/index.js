@@ -4,8 +4,8 @@ import Select from 'react-select';
 import { Container, ConteudoForm, ConteudoTitulo, Titulo, BotaoAcao, ButtonInfo, AlertSuccess, AlertDanger, Form, Label,  Input, ButtonSuccess } from './styles';
 
 export const Cadastrar = () => {
-
-  const [produto, setProduto] = useState({
+  
+  const [usuario, setusuario] = useState({
     titulo: '',
     descricao: ''
   });
@@ -15,22 +15,25 @@ export const Cadastrar = () => {
     mensagem: ''
   })
 
-  const valorInput = e => setProduto({ ...produto, [e.target.name]: e.target.value });
+  const valorInput = e => setusuario(
+    { ...usuario, [e.target.name]: e.target.value }
+  );
   const options = [
     { value: 1, label: 'Administrador' },
     { value: 2, label: 'Supervisor' },
     { value: 3, label: 'Operário' },
   ];
+
   const cadastrarUsuario = async e => {
     e.preventDefault();
-    //console.log(produto.titulo);
+    //console.log(usuario.titulo);
 
     await fetch("http://localhost/celke/cadastrar.php", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ produto })
+      body: JSON.stringify({ usuario })
     })
       .then((response) => response.json())
       .then((responseJson) => {
@@ -71,23 +74,42 @@ export const Cadastrar = () => {
         {status.type === 'success' ? <AlertSuccess>{status.mensagem}</AlertSuccess> : ""}
 
         <Form onSubmit={cadastrarUsuario}>
-          <Label>Nome completo: </Label>
-          <Input type="text" name="nome" placeholder="nome do usuário" onChange={valorInput} />
+         
+        <Label>Nome completo: </Label>
+                    <Input type="text" name="nome" placeholder="nome do usuário" onChange={valorInput} />
 
-          <Label>CPF: </Label>
-          <Input type="text" name="cpf" placeholder="CPF" onChange={valorInput} />
+                    <Label>CPF: </Label>
+                    <Input type="text" name="cpf"  placeholder="CPF" onChange={valorInput} />
+                    <Label>Telefone: </Label>
+                    <Input type="text" name="telefone"  placeholder="Telefone" onChange={valorInput} />
+                    <Label>E-mail: </Label>
+                    <Input type="email" name="email"  placeholder="E-mail" onChange={valorInput} />
 
-          <Label>E-mail: </Label>
-          <Input type="email" name="email" placeholder="E-mail" onChange={valorInput} />
+                    <Label>Senha: </Label>
+                    <Input type="password" name="senha" placeholder="Sua senha de acesso" onChange={valorInput} />
+                    
+                    <Label>Data de nascimento: </Label>
+                    <Input type="date" name="data_nascimento" onChange={valorInput} />
 
-          <Label>Senha: </Label>
-          <Input type="password" name="senha" placeholder="Sua senha de acesso" onChange={valorInput} />
-           
-          <Label>Data de nascimento: </Label>
-          <Input type="date" name="datanascimento" onChange={valorInput} />
-          
-          <Label>Perfil:</Label>
-          <Select options={options} />
+                    
+                    <Label>Perfil:</Label>
+                    <Select options={options} />
+
+                    <Label>Cep: </Label>
+                    <Input type="text" name="cep"  onChange={valorInput} />
+                    <Label>Pais: </Label>
+                    <Input type="text" name="pais"  onChange={valorInput} />
+                    <Label>Estado: </Label>
+                    <Input type="text" name="estado"   onChange={valorInput} />
+                    <Label>Cidade: </Label>
+                    <Input type="text" name="cidade"   onChange={valorInput} />
+                    <Label>Lagradouro: </Label>
+                    <Input type="text" name="logradouro"  onChange={valorInput} />
+                    <Label>Complemento: </Label>
+                    <Input type="text" name="complemento"  onChange={valorInput} />
+
+                    <Label>Número: </Label>
+                    <Input type="text" name="numero"  onChange={valorInput} />
 
           <ButtonSuccess type="submit">Cadastrar</ButtonSuccess>
 
@@ -95,4 +117,5 @@ export const Cadastrar = () => {
       </ConteudoForm>
     </Container>
   );
+  
 }
